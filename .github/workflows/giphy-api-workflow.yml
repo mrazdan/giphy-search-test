@@ -1,4 +1,3 @@
-nano .github/workflows/giphy-api-workflow.yml
 name: Giphy API Tests
 
 on:
@@ -18,22 +17,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up Ruby (or your required runtime)
+      # Set up Ruby 
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7' # Replace with your Ruby version
+          ruby-version: 3.2
 
-      # Install dependencies (if you're using Bundler)
+      # Install dependencies
       - name: Install dependencies
         run: |
           gem install bundler
-          bundle install
+          bundle install --jobs 4 --retry 3
 
-      # Run tests
-      - name: Run tests
+      # Run RSpec tests
+      - name: Run RSpec
         env:
           GIPHY_API_KEY: ${{ secrets.GIPHY_API_KEY }}
-        run: |
-          bundle exec rspec spec/giphy_search_spec.rb
-
+        run: bundle exec rspec
