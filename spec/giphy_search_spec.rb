@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe 'Giphy Search API' do
   BASE_URL = 'https://api.giphy.com/v1/gifs/search'
-  API_KEY  = ENV['GIPHY_API_KEY'] || 'WSv1Ae7u4CRKDoWSPmKXqNM4qnFZM5Bn' # replace or set ENV var
+  API_KEY  = ENV['GIPHY_API_KEY']
 
   it 'returns results with correct pagination and query' do
     query  = 'fish'
